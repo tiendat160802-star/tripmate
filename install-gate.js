@@ -3,6 +3,18 @@
   'use strict';
   const standalone = () => window.matchMedia('(display-mode: standalone)').matches ||
     window.matchMedia('(display-mode: fullscreen)').matches || window.navigator.standalone === true;
+  // iPhone's standalone web-app can still receive native pinch events on some iOS versions.
+  // Block only multi-finger zoom gestures. One-finger scrolling and swiping stay intact.
+  const blockPinch = (event) => {
+    if (standalone() && event.cancelable) event.preventDefault();
+  };
+  document.addEventListener('gesturestart', blockPinch, { passive: false });
+  document.addEventListener('gesturechange', blockPinch, { passive: false });
+  document.addEventListener('touchmove', (event) => {
+    if (standalone() && event.touches && event.touches.length > 1 && event.cancelable) {
+      event.preventDefault();
+    }
+  }, { passive: false });
   const gate = document.getElementById('install-gate');
   const app = document.getElementById('app');
   const feedback = document.getElementById('install-feedback');
@@ -25,12 +37,15 @@
       document.body.appendChild(el);
     });
     try {
-      await load('./firebase-config.js');
-      await load('./app.js');
+      await load('./firebase-config.js?v=4.2');
+      await load('./app.js?v=4.2');
     } catch (err) {
       app.innerHTML = '<div style="padding:28px;font-family:sans-serif">Không tải được TripMate. Vui lòng kiểm tra mạng và thử lại.</div>';
       console.error(err);
     }
+  }
+  if ('serviceWorker' in navigator && location.protocol === 'https:') {
+    navigator.serviceWorker.register('./sw.js').catch(() => {});
   }
   if (standalone() || (['localhost','127.0.0.1'].includes(location.hostname) && new URLSearchParams(location.search).has('preview'))) { launch(); return; }
   app.hidden = true;
@@ -54,7 +69,4 @@
     feedback.textContent = 'Hãy mở TripMate từ biểu tượng trên màn hình chính, không phải từ tab trình duyệt này.';
   });
   window.matchMedia('(display-mode: standalone)').addEventListener?.('change', () => { if (standalone()) launch(); });
-  if ('serviceWorker' in navigator && location.protocol === 'https:') {
-    navigator.serviceWorker.register('./sw.js').catch(() => {});
-  }
 })();

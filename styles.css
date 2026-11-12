@@ -260,3 +260,247 @@ body{font-size:15px}
 @media(max-width:390px){.content{padding-left:15px;padding-right:15px}.photo-hero{height:310px}.hero-stats{gap:5px}.hero-stats span{font-size:10px;padding:7px 8px}.quick-grid{gap:7px}.quick-tile{min-height:95px}.photo-tile{height:78px}.activity-card{grid-template-columns:43px 34px minmax(0,1fr);gap:6px}.activity-marker{width:33px;height:33px}.activity-body .actions{gap:4px}.activity-body .actions button{padding:6px 7px}}
 @media(max-width:350px){.stat b,.expenses-stats .stat b{font-size:15px}.hero-content h2{font-size:32px}.hero-stats span:last-child{display:none}.quick-tile strong{font-size:11px}}
 @media(prefers-reduced-motion:reduce){.quick-tile{transition:none}}
+
+
+/* =============================================================
+   TRIPMATE v4.0  /  SELECTIVE LIQUID GLASS
+   Keep itinerary, expenses and long-form content opaque for legibility.
+   Glass is limited to navigation, hero controls, primary actions and sheets.
+   ============================================================= */
+:root{
+ --bg:#f2f6fc;
+ --blue:#0879ef;
+ --ink:#14243d;
+ --glass-stroke:rgba(255,255,255,.83);
+ --glass-shadow:0 17px 45px rgba(18,58,111,.13),inset 0 1px 0 rgba(255,255,255,.85);
+}
+html{background:#e7effa}
+#app{
+ background:radial-gradient(110% 32% at 100% 9%,rgba(211,234,255,.45),transparent 77%),
+            linear-gradient(180deg,#f6f9ff 0%,#f1f5fb 38%,#f5f8fd 100%);
+ padding-bottom:calc(112px + env(safe-area-inset-bottom));
+}
+/* The top bar is a light translucent control surface, not an all-over blur. */
+.topbar{
+ position:sticky;top:0;z-index:18;
+ background:linear-gradient(155deg,rgba(255,255,255,.86),rgba(247,251,255,.73));
+ border-bottom:1px solid rgba(255,255,255,.85);
+ -webkit-backdrop-filter:blur(26px) saturate(170%);
+ backdrop-filter:blur(26px) saturate(170%);
+ box-shadow:0 6px 18px rgba(40,73,119,.045);
+}
+.brand{font-weight:850;letter-spacing:-.9px}
+.brand img{border:1px solid rgba(255,255,255,.9);box-shadow:0 4px 13px rgba(29,83,147,.1)}
+.status{
+ background:rgba(241,247,255,.72);
+ border:1px solid rgba(255,255,255,.85);
+ color:#637a97;
+ -webkit-backdrop-filter:blur(18px) saturate(150%);
+ backdrop-filter:blur(18px) saturate(150%);
+}
+.top-actions .iconbtn,.trip-edit{
+ border:1px solid var(--glass-stroke);
+ background:linear-gradient(135deg,rgba(255,255,255,.89),rgba(232,243,255,.67));
+ box-shadow:inset 0 1px 0 #fff,0 5px 16px rgba(50,97,157,.09);
+ -webkit-backdrop-filter:blur(16px) saturate(145%);
+ backdrop-filter:blur(16px) saturate(145%);
+}
+/* Floating iOS-style glass capsule: four full-size, accessible controls. */
+.bottom-nav{
+ width:min(calc(100% - 24px),482px);
+ bottom:calc(10px + env(safe-area-inset-bottom));
+ padding:7px;gap:3px;
+ border:1px solid rgba(255,255,255,.93);
+ border-radius:30px;
+ background:linear-gradient(135deg,rgba(255,255,255,.91),rgba(232,241,254,.73));
+ -webkit-backdrop-filter:blur(30px) saturate(185%);
+ backdrop-filter:blur(30px) saturate(185%);
+ box-shadow:0 14px 44px rgba(17,54,109,.17),0 3px 11px rgba(23,68,123,.08),inset 0 1.5px 1px rgba(255,255,255,.98);
+ isolation:isolate;
+}
+.bottom-nav::before{
+ content:"";position:absolute;inset:1px 1px auto;height:43%;z-index:-1;
+ border-radius:29px 29px 45% 45%;pointer-events:none;
+ background:linear-gradient(180deg,rgba(255,255,255,.42),transparent);
+}
+.navbtn{
+ position:relative;
+ min-width:0;min-height:63px;
+ padding:8px 2px 7px;
+ border:1px solid transparent;
+ border-radius:23px;
+ color:#7c8da7;
+ font-size:10.5px;font-weight:800;
+ line-height:1.15;
+ transition:background .28s cubic-bezier(.2,.8,.25,1),
+            color .2s ease,transform .2s ease,box-shadow .28s ease;
+}
+.navbtn .nicon{height:24px;filter:drop-shadow(0 1px 0 rgba(255,255,255,.4))}
+.navbtn.active{
+ border-color:rgba(255,255,255,.89);
+ border-radius:22px;
+ background:linear-gradient(150deg,rgba(225,243,255,.97),rgba(200,227,255,.79));
+ box-shadow:0 4px 11px rgba(26,110,203,.11),inset 0 1px 1px #fff,inset 0 -1px 3px rgba(84,153,232,.13);
+ color:#0876e7;
+}
+.navbtn.active::before{
+ content:"";position:absolute;left:17%;right:17%;top:3px;height:1px;
+ border-radius:50%;background:rgba(255,255,255,.95);pointer-events:none;
+}
+.navbtn:active{transform:scale(.94)}
+/* Destination photography remains crisp; only interface elements are glass. */
+.photo-hero{
+ border-radius:30px;
+ box-shadow:0 16px 37px rgba(29,83,153,.15);
+ border:1px solid rgba(255,255,255,.42);
+}
+.hero-top-pill,.hero-credit{
+ background:linear-gradient(135deg,rgba(255,255,255,.35),rgba(255,255,255,.14));
+ border:1px solid rgba(255,255,255,.58);
+ box-shadow:inset 0 1px 1px rgba(255,255,255,.24),0 4px 12px rgba(0,30,64,.09);
+ -webkit-backdrop-filter:blur(22px) saturate(170%);
+ backdrop-filter:blur(22px) saturate(170%);
+ color:#fff;
+}
+.hero-date{
+ background:linear-gradient(145deg,rgba(255,255,255,.96),rgba(243,250,255,.84));
+ border:1px solid rgba(255,255,255,.8);
+ box-shadow:0 5px 16px rgba(3,32,63,.14),inset 0 1px 0 rgba(255,255,255,.93);
+ -webkit-backdrop-filter:blur(20px) saturate(170%);
+ backdrop-filter:blur(20px) saturate(170%);
+}
+.hero-stats span{
+ background:linear-gradient(135deg,rgba(255,255,255,.87),rgba(233,245,255,.73));
+ border:1px solid rgba(255,255,255,.72);
+ -webkit-backdrop-filter:blur(20px) saturate(160%);
+ backdrop-filter:blur(20px) saturate(160%);
+ box-shadow:inset 0 1px rgba(255,255,255,.8),0 3px 14px rgba(0,29,63,.12);
+ color:#24466c;
+}
+/* The former small-photo gallery and three shortcut tiles are intentionally gone. */
+.home-screen .invite-card{
+ margin-top:16px;
+ position:relative;overflow:hidden;isolation:isolate;
+ padding:17px 16px;
+ border:1px solid rgba(255,255,255,.95);
+ border-radius:24px;
+ background:linear-gradient(130deg,rgba(255,255,255,.88),rgba(224,239,255,.78));
+ -webkit-backdrop-filter:blur(25px) saturate(180%);
+ backdrop-filter:blur(25px) saturate(180%);
+ box-shadow:var(--glass-shadow);
+}
+.home-screen .invite-card::before{
+ content:"";position:absolute;inset:1px 12% auto 11%;height:1px;
+ background:linear-gradient(90deg,transparent,rgba(255,255,255,.98),transparent);
+ pointer-events:none;
+}
+.invite-card span{font-size:12px;color:#637d99}
+.invite-card b{font-size:clamp(14px,4.2vw,18px);letter-spacing:1.1px;overflow-wrap:anywhere}
+.btn.primary,.install-native{
+ border:1px solid rgba(255,255,255,.37);
+ background:linear-gradient(145deg,#3ab0ff 0%,#0a8df7 42%,#0874e7 100%);
+ box-shadow:inset 0 1px 1px rgba(255,255,255,.38),0 9px 17px rgba(0,102,214,.22);
+ color:#fff;
+}
+.btn.primary:active,.install-native:active{filter:brightness(.96);transform:scale(.98)}
+.invite-btn{border-radius:16px;font-size:13px;min-height:45px}
+/* Light glass surface at the top of bottom sheets, solid below for readable forms. */
+.modal-backdrop{
+ background:rgba(12,31,64,.38);
+ -webkit-backdrop-filter:blur(7px) saturate(112%);
+ backdrop-filter:blur(7px) saturate(112%);
+}
+.sheet{
+ border:1px solid rgba(255,255,255,.92);
+ border-bottom:0;
+ background:linear-gradient(180deg,rgba(252,254,255,.98),#fff 145px);
+ box-shadow:0 -18px 70px rgba(17,54,109,.22),inset 0 1px rgba(255,255,255,.95);
+ border-radius:31px 31px 0 0;
+}
+.sheethead{background:transparent}
+/* Keep white opaque cards for the amounts, timelines, and checkboxes. */
+.stat,.budget-card,.upcoming-card,.updates-card,.activity-card,.expense-front,.card,.balance-card{
+ background:#fff;
+}
+.title{letter-spacing:-.9px}
+.section h2{font-size:18px;letter-spacing:-.55px}
+.stat b{letter-spacing:-.7px}
+/* Reduced motion and transparency: use static, high-contrast surfaces. */
+@media(prefers-reduced-motion:reduce){
+ .view,.navbtn,.btn,.iconbtn{animation:none!important;transition:none!important}
+}
+@media(prefers-reduced-transparency:reduce){
+ .bottom-nav,.topbar,.home-screen .invite-card,.hero-date,.hero-stats span,.hero-top-pill,.hero-credit{
+   -webkit-backdrop-filter:none!important;backdrop-filter:none!important;
+ }
+ .bottom-nav,.topbar,.home-screen .invite-card{background:#f6faff}
+ .hero-top-pill,.hero-credit{background:#2b619c}
+ .hero-stats span,.hero-date{background:#f7fbff}
+}
+@supports not ((-webkit-backdrop-filter:blur(1px)) or (backdrop-filter:blur(1px))){
+ .bottom-nav,.topbar,.home-screen .invite-card{background:#f2f8ff}
+ .hero-top-pill,.hero-credit{background:rgba(9,65,123,.86)}
+ .hero-stats span,.hero-date{background:#fff}
+}
+@media(max-width:360px){
+ .bottom-nav{width:calc(100% - 18px);padding:6px}
+ .navbtn{min-height:60px;font-size:9.7px}
+ .hero-stats span{font-size:10px}
+ .invite-card{gap:6px}
+ .invite-btn{font-size:12px;padding:10px 9px}
+}
+
+/* ===========================================================
+   TripMate v4.1 - iPhone stable viewport (no unintended zoom)
+   - 16px input text stops Safari zoom-on-focus
+   - touch-action manipulation removes double-tap zoom
+   - single-finger scrolling, horizontal swipe actions preserved
+   =========================================================== */
+html {
+ -webkit-text-size-adjust:100%;
+ text-size-adjust:100%;
+ overflow-x:clip;
+ touch-action:manipulation;
+}
+body {
+ -webkit-text-size-adjust:100%;
+ text-size-adjust:100%;
+ overflow-x:clip;
+ overscroll-behavior-x:none;
+ touch-action:manipulation;
+}
+#app, #install-gate {width:100%;touch-action:manipulation}
+/* iOS automatically zooms when focused input/select/textarea font-size < 16px. */
+input:not([type="checkbox"]):not([type="radio"]),
+select, textarea {
+ font-size:16px !important;
+ -webkit-text-size-adjust:100%;
+}
+/* Do not disrupt horizontal swiping in expense rows or timeline chips. */
+button, a, [role="button"] {touch-action:manipulation}
+
+/* TripMate v4.2 — notification center, consistent Liquid Glass controls */
+.notify-top{position:relative;flex:none}
+.notif-badge{position:absolute;right:6px;top:5px;width:9px;height:9px;background:#ff554b;border:2px solid white;border-radius:99px;box-shadow:0 1px 4px #cf3f4b66}
+.notif-quick-actions{display:flex;gap:10px;margin:18px 0 12px}
+.notif-quick{min-width:0;flex:1;display:flex;align-items:center;justify-content:center;gap:8px;min-height:55px;padding:10px;border:1px solid #dbe8f9;border-radius:18px;background:linear-gradient(135deg,#fff,#eef6ff);font:700 13px 'Plus Jakarta Sans',sans-serif;color:#28609a;box-shadow:0 6px 15px #123e7a0b}
+.notif-quick b{background:#168bee;color:white;border-radius:20px;min-width:21px;padding:2px 5px;font-size:11px}
+.notification-heading{display:flex;justify-content:space-between;align-items:center;gap:8px;margin:0 0 13px}
+.notification-heading strong{display:block;font-size:15px;color:#163b62}
+.notification-heading small{display:block;color:#7791ad;font-size:12px;margin-top:4px}
+.notif-list{display:grid;gap:9px;max-height:45vh;overflow:auto;overscroll-behavior:contain}
+.notif-entry{width:100%;display:flex;gap:11px;align-items:flex-start;position:relative;text-align:left;border:1px solid #e4edf8;border-radius:17px;padding:13px 11px;background:#fff;color:#183b5e;min-height:77px;font-family:inherit}
+.notif-entry.unread{border-color:#b9dbff;background:#f0f8ff}
+.notif-entry-icon{display:grid;place-items:center;width:37px;height:37px;flex-shrink:0;border-radius:12px;background:#e5f1ff;color:#1986e8}
+.notif-entry-body{min-width:0;display:flex;flex-direction:column;gap:5px}
+.notif-entry-body strong{font-size:14px;line-height:1.35}
+.notif-entry-body span{font-size:13px;line-height:1.5;overflow-wrap:anywhere}
+.notif-entry-body small{font-size:11px;color:#7a90a7}
+.notif-dot{position:absolute;top:15px;right:12px;width:7px;height:7px;background:#168bee;border-radius:50%}
+.notif-empty{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:28px 14px;gap:9px;color:#6e8aa7;font-size:14px;text-align:center}
+.notif-empty strong{color:#264a6f}
+.notification-permission{border:1px solid #dceaf8;border-radius:20px;background:linear-gradient(145deg,#f8fcff,#eaf5ff);padding:16px;margin-top:16px}
+.notification-permission strong{color:#153e67;font-size:15px}
+.notification-permission p{font-size:13px;line-height:1.5;color:#6684a2;margin:7px 0 14px}
+.notification-permission button:disabled{opacity:.5;filter:grayscale(.7)}
+@media(max-width:370px){.top-actions .status{max-width:93px;text-overflow:ellipsis;overflow:hidden;white-space:nowrap}.notif-quick{font-size:12px}}
