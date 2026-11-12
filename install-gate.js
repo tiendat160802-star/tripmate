@@ -32,7 +32,7 @@
       console.error(err);
     }
   }
-  if (standalone()) { launch(); return; }
+  if (standalone() || (['localhost','127.0.0.1'].includes(location.hostname) && new URLSearchParams(location.search).has('preview'))) { launch(); return; }
   app.hidden = true;
   gate.hidden = false;
   document.getElementById(panelId).hidden = false;
@@ -50,7 +50,7 @@
     document.getElementById('install-native').hidden = true;
   });
   document.getElementById('install-recheck').addEventListener('click', () => {
-    if (standalone()) { launch(); return; }
+    if (standalone() || (['localhost','127.0.0.1'].includes(location.hostname) && new URLSearchParams(location.search).has('preview'))) { launch(); return; }
     feedback.textContent = 'Hãy mở TripMate từ biểu tượng trên màn hình chính, không phải từ tab trình duyệt này.';
   });
   window.matchMedia('(display-mode: standalone)').addEventListener?.('change', () => { if (standalone()) launch(); });

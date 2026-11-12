@@ -1,0 +1,33 @@
+TRIPMATE v3.5 · BẢN GITHUB PAGES ĐẦY ĐỦ
+
+ĐÃ CÓ:
+- Giao diện sáng, bo góc, 4 tab điều hướng; lịch trình theo ngày; chi tiêu và checklist.
+- Ảnh THẬT theo tên địa điểm từ Wikimedia Commons (cần Internet để tải ảnh mới).
+- Cấu hình Firebase tripmate-93041 được giữ nguyên; không cần tạo Firebase mới.
+- PWA: trình duyệt hiển thị hướng dẫn cài, mở từ màn hình chính mới vào app.
+- Đường dẫn tương đối tương thích với GitHub Pages /tripmate/.
+
+CÁCH NÂNG CẤP:
+1) Giải nén ZIP và mở thư mục bên trong.
+2) Trong GitHub repo tiendat160802-star/tripmate, tải TẤT CẢ file trong thư mục lên root của nhánh main.
+3) Commit changes, kiểm tra GitHub Actions đã deploy thành công.
+4) Mở https://tiendat160802-star.github.io/tripmate/ bằng Safari.
+5) Nếu trước đây đã cài PWA, đóng hẳn app rồi mở lại; khi cần thì xóa và Thêm vào Màn hình chính lại.
+
+LƯU Ý:
+- Các file đặt trực tiếp tại root: index.html, app.js, styles.css, install-gate.js,
+  firebase-sync.js, firebase-config.js, sw.js, manifest.webmanifest, icon-192.png, icon-512.png.
+- Không upload ZIP nguyên chiếc vào repo, cũng không để trong thư mục con.
+- Dữ liệu chuyến đi được lưu tại Firebase; thay source trên GitHub không xóa dữ liệu Firestore.
+- Nếu đã chuyển từ Netlify sang GitHub, Anonymous Auth có thể tạo UID mới cho cùng một người;
+  dùng mã nhóm để tham gia lại nếu cần.
+- Ảnh Wikimedia Commons có thể không tải khi offline; app vẫn hiển thị nền gradient.
+- Giao diện "chỉ cài từ màn hình chính" là kiểm tra phía giao diện, không phải bảo mật.
+- Chưa kiểm thử kết nối Firebase trên dự án của bạn vì không có quyền Firebase Console.
+
+XEM TRƯỚC TRÊN MÁY TÍNH (LOCAL, DEMO):
+  python3 -m http.server 8765  (trong thư mục app)
+  http://localhost:8765/?preview=1
+  Lưu ý: localhost là chế độ demo, không kết nối Firebase.
+
+QUYỀN ẢNH: xem NGUON-ANH.md.
