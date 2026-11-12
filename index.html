@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#f5f7fb">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="TripMate">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="description" content="TripMate – lịch trình và chi tiêu du lịch nhóm, không cần đăng nhập.">
+<link rel="manifest" href="./manifest.webmanifest">
+<link rel="apple-touch-icon" href="./icons/icon-192.png">
+<link rel="icon" href="./icons/icon-192.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="./styles.css">
+<title>TripMate – Đi cùng nhau</title>
+</head>
+<body>
+<section id="install-gate" class="install-gate" aria-labelledby="install-title" hidden>
+  <div class="install-card">
+    <div class="install-icon"><img src="./icons/icon-192.png" alt="Biểu tượng TripMate" width="78" height="78"></div>
+    <div class="install-eyebrow">TRIPMATE · WEB APP</div>
+    <h1 id="install-title">Cài TripMate lên màn hình chính</h1>
+    <p class="install-intro">Để bắt đầu chuyến đi cùng bạn bè, hãy thêm TripMate vào màn hình chính và mở từ biểu tượng ứng dụng.</p>
+    <div id="install-ios" class="install-instructions" hidden>
+      <div class="install-step"><b>1</b><span>Mở trang này bằng <strong>Safari</strong> trên iPhone.</span></div>
+      <div class="install-step"><b>2</b><span>Nhấn nút <strong>Chia sẻ</strong> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="17" height="17" style="vertical-align:middle"><path d="M12 16V2m-5 5 5-5 5 5M4 13v8h16v-8"/></svg> → <strong>Thêm vào Màn hình chính</strong>.</span></div>
+      <div class="install-step"><b>3</b><span>Chọn <strong>Mở dưới dạng ứng dụng web</strong> (nếu thấy) và nhấn <strong>Thêm</strong>. Sau đó mở TripMate từ màn hình chính.</span></div>
+    </div>
+    <div id="install-android" class="install-instructions" hidden>
+      <div class="install-step"><b>1</b><span>Mở đường link trong <strong>Chrome</strong> trên Android.</span></div>
+      <div class="install-step"><b>2</b><span>Nhấn <strong>⋮</strong> → <strong>Cài đặt ứng dụng</strong> hoặc <strong>Thêm vào màn hình chính</strong>.</span></div>
+      <div class="install-step"><b>3</b><span>Chọn <strong>Cài đặt</strong>, rồi mở TripMate từ biểu tượng mới.</span></div>
+    </div>
+    <div id="install-desktop" class="install-instructions" hidden>
+      <div class="install-step"><b>1</b><span>Gửi link TripMate sang <strong>điện thoại</strong>.</span></div>
+      <div class="install-step"><b>2</b><span>Thêm TripMate vào màn hình chính theo hướng dẫn trên điện thoại.</span></div>
+    </div>
+    <button id="install-native" class="install-native" type="button" hidden>Cài đặt TripMate</button>
+    <p class="install-note">Sau khi cài đặt, hãy thoát trình duyệt và nhấn biểu tượng TripMate trên màn hình chính để vào ứng dụng.</p>
+    <button id="install-recheck" class="install-recheck" type="button">Tôi đã thêm vào màn hình chính</button>
+    <p id="install-feedback" class="install-feedback" role="status" aria-live="polite"></p>
+  </div>
+</section>
+<div id="app" hidden></div>
+<div id="overlay"></div>
+<div id="toast" role="status" aria-live="polite"></div>
+<script src="./install-gate.js"></script>
+</body>
+</html>
